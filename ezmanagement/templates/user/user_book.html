@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USER BOOK</title>
+</head>
+<body>
+{% block title %}USER BOOK PAGE{% endblock %}
+
+{% block sidebar %}
+    <li class="header">HEADER</li>
+    <!-- Optionally, you can add icons to the links -->
+    <li><a href="{% url 'ezmanagement:query_books' %}"><i class="glyphicon glyphicon-book"></i> <span>Book Library</span></a></li>
+{% endblock sidebar %}
+
+{% block content %}
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th>Book ID</th>
+      <th>Title</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for book in books  %}
+    <tr>
+      <th scope="row">{{ book.id }}</th>
+      <td>{{ book.title }}</td>
+      <td>{{ book.description }}</td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+{% endblock %}
+
+</body>
+</html>

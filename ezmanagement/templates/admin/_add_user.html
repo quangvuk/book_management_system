@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load widget_teaks %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Add new user{% endblock %}</title>
+</head>
+<body>
+{% block sidebar %}
+    <li class="header">HEADER</li>
+    <!-- Optionally, you can add icons to the links -->
+    <li class="treeview">
+        <a href="#"><i class="glyphicon glyphicon-book"></i> <span>Book Library</span>
+            <span class="pull-right-container ">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{% url 'ezmanagement:query_books' %}">Books</a></li>
+            <li><a href="{% url 'ezmanagement:query_authors' %}">Authors</a></li>
+        </ul>
+    </li>
+    <li><a href="{% url 'ezmanagement:query_users' %}"><i class="glyphicon glyphicon-user"></i> <span>Operator Management</span></a>
+    </li>
+{% endblock sidebar %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Name:</label>
+            {{ form.username}}
+        </div>
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}
+
+</body>
+</html>

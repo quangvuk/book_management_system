@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}ADMIN USER{% endblock %}</title>
+</head>
+<body>
+{% block sidebar %}
+    <li class="header">HEADER</li>
+    <!-- Optionally, you can add icons to the links -->
+    <li class="treeview">
+        <a href="#"><i class="glyphicon glyphicon-book"></i> <span>Book Library</span>
+            <span class="pull-right-container ">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{% url 'ezmanagement:query_books' %}">Books</a></li>
+            <li><a href="{% url 'ezmanagement:query_authors' %}">Authors</a></li>
+        </ul>
+    </li>
+    <li><a href="{% url 'ezmanagement:query_users' %}"><i class="glyphicon glyphicon-user"></i> <span>Operator Management</span></a></li>
+{% endblock sidebar %}
+
+{% block content %}
+
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users  %}
+    <tr>
+      <th scope="row">{{ user.id }}</th>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>@{{ user.username }}</td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+{% endblock %}
+
+</body>
+</html>
